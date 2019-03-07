@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Реализовать подсчет различных видов html-тегов по вводимым url (Rails-приложение).
 
-Things you may want to cover:
+1. Главная страница должна содержать поле для указания URL и кнопку.
+По отправке формы делать запрос на указанный URL (использовать Nokogiri), в ответе выводить количество каждого из html-тегов в ответе по указанному адресу (сколько раз встречается в документе), например, div - 5 раз, p - 1 раз и т. п. Оформить в виде таблицы.
 
-* Ruby version
+2. Также реализовать сохранение этих данных в базе (Postgre). В одной модели (Document) храним url, в связанной (Tag) - теги и их количество.
 
-* System dependencies
+3. Добавить в проект регистрацию и авторизацию (Devise). Шаблоны Devise можно не переделывать.
 
-* Configuration
+4. Для авторизованных пользователей выводить данные по вводимым ранее url (сохраненным в БД). Сделать ресурс documents (экшены: index - список url, show - список тегов с кол-вом для url, destroy - понятно) и вложенный ресурс documents/:id/tags (экшены: show - тег и кол-во, edit/update (только количества), destroy). На индексной странице сделать пейджинг с помощью Kaminari (показывать по 5 записей на странице). Добавить всевозможные ссылки (на edit, destroy и т. п. - можно использовать бутстраповские иконки вместо текста в ссылках).
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Использовать HAML и SASS, аккуратно оформить все страницы с помощью Bootstrap (кроме страниц от Devise).

@@ -1,2 +1,21 @@
-<h1>Documents#index</h1>
-<p>Find me in app/views/documents/index.html.erb</p>
+<h1>Documents</h1>
+
+<table>
+  <tr>
+    <th>URL</th>
+    <th>Text</th>
+    <th></th>
+  </tr>
+
+  <% @documents.each do |document| %>
+    <tr>
+      <td><%= document.url %></td>      
+      <td><%= link_to 'Show'  %></td>
+      <td><%= link_to 'Edit'  %></td>
+      <td><%= link_to 'Destroy' ,
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  <%= link_to 'New document', new_document_path %>
+</table>

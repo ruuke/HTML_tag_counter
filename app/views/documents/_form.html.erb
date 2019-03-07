@@ -1,0 +1,9 @@
+<%= form_with model: [@document], local: true do |form| %>
+
+ <p>
+   <%= form.label :url %><br>
+   <%= form.text_area :url, id: :document_url, rows: 7, cols: 60 %>
+ </p> 
+
+  <p><%= form.submit %></p>
+<% end %>

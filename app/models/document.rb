@@ -1,3 +1,3 @@
 class Document < ApplicationRecord
-  has_many :tags
+  has_many :tags, dependent: :destroy
 end

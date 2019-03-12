@@ -1,2 +1,8 @@
-<h1>Tags#show</h1>
-<p>Find me in app/views/tags/show.html.erb</p>
+<h1><%= @tag.title %> tag</h1>
+
+<p>
+  <strong>Count:</strong>
+  <%= @tag.count %>
+</p>
+
+<%= link_to 'Back', document_path(@tag.document) %>

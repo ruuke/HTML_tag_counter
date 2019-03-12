@@ -1,2 +1,20 @@
-<h1>Documents#show</h1>
-<p>Find me in app/views/documents/show.html.erb</p>
+<p>
+  <strong>Document</strong>
+  <%= @document.url %>
+</p>
+
+<h1>Tags list</h1>
+
+<div class="table-resposive">
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>Tag</th>
+        <th>Count</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    
+    <%= render @document.tags %>      
+  </table>
+</div>

@@ -4,27 +4,27 @@ class TagCountingService
 
   def initialize(document)
     @document = document
-    @tags = []
+    @tags = Hash.new(0)
   end
 
   def call
-    doc = Nokogiri::HTML(open(@document.url))
-
-    doc.search('*').each do |tag|
-      @tags << tag.name
-    end
-
-    tag_counter
+    open_url
+    parse_page
+    create_tags
   end
 
-  def tag_counter
-    tags_frequency = @tags.inject( Hash .new(0)) { |result, tag|
-                                    result.update({ tag => 1 }) { |key, old_value, new_value|
-                                    old_value + new_value } }
+  def open_url
+    @doc = Nokogiri::HTML(open(@document.url))
+  end
 
-    tags_frequency.each do |tag, value|
-      @document.tags.create(title: tag, count: value)
+  def parse_page
+    @doc.search('*').each do |tag|
+      @tags[tag.name] += 1
     end
-  end 
+  end
+
+  def create_tags
+    @tags.each { |tag, count| @document.tags.create(title: tag, count: count)}
+  end
 
 end

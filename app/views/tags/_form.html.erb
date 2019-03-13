@@ -1,0 +1,10 @@
+<%= form_with model: @tag, local: true do |form| %>
+ <%= render 'shared/errors', resource: @tag %>
+
+ <p>
+   <%= form.label :count %><br>
+   <%= form.text_area :count, id: :tag_count %>
+ </p> 
+
+  <p><%= form.submit %></p>
+<% end %>

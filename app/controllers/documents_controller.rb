@@ -3,10 +3,10 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: %i[show destroy]
 
   rescue_from Errno::ENOENT, with: :rescue_with_incorrect_url
-  rescue_from StandardError, with: :rescue_standard_errors
+  rescue_from RuntimeError, with: :rescue_standard_errors
 
   def index
-    @documents = Document.all
+    @documents = Document.order(:url).page(params[:page])
   end
 
   def new
@@ -18,7 +18,7 @@ class DocumentsController < ApplicationController
     TagCountingService.new(@document).call    
 
     if @document.save
-      redirect_to documents_path
+      redirect_to document_path(@document)
     else
       render :new
     end
@@ -43,11 +43,11 @@ class DocumentsController < ApplicationController
   end
 
   def rescue_with_incorrect_url
-    render plain: 'Incorrect URL.'
+    redirect_to documents_path, notice: '#Incorrect URL.'
   end
 
   def rescue_standard_errors
-    render plain: 'ooooo'
+    redirect_to documents_path, notice: 'Incorrect URL.'
   end
 
 end

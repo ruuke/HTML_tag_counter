@@ -1,20 +1,21 @@
 <p>
   <strong>Document</strong>
-  <%= @document.url %>
+  <%= link_to @document.url, @document.url, target: "_blank" %>
 </p>
 
 <h1>Tags list</h1>
 
-<div class="table-resposive">
-  <table class="table mt-3">
+
+  <table class="table">
     <thead>
       <tr>
-        <th>Tag</th>
-        <th>Count</th>
-        <th>Actions</th>
+        <th scope="col">Tag</th>
+        <th scope="col">Count</th>
+        <th scope="col" width=25>Actions</th>
       </tr>
     </thead>
     
     <%= render @document.tags %>      
   </table>
-</div>
+
+<%= link_to 'Back', documents_path %>

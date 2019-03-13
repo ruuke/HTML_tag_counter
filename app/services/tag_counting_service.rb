@@ -8,7 +8,9 @@ class TagCountingService
   end
 
   def call
-    open_url
+    if open_url
+      @document.save
+    end
     parse_page
     create_tags
   end

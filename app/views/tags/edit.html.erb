@@ -1,2 +1,9 @@
-<%= question_header(@question) %>
+<h1>Edit tag count</h1>
+
+<p>
+  <%= @tag.title %>
+</p>
+
 <%= render 'form' %>
+
+<%= link_to 'Back', document_path(@tag.document) %>

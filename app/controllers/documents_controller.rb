@@ -14,10 +14,11 @@ class DocumentsController < ApplicationController
   end
 
   def create 
-    @document = Document.new(document_params)
+    @document = current_user.documents.new(document_params)
     TagCountingService.new(@document).call    
 
     if @document.save
+      DocumentsMailer.created_document(@document).deliver_now
       redirect_to document_path(@document)
     else
       render :new
@@ -25,6 +26,7 @@ class DocumentsController < ApplicationController
   end
 
   def show
+    @tags = @document.tags.page(params[:page])
   end
 
   def destroy

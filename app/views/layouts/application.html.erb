@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HtmlTagCounter</title>
+    <meta charset="utf-8">
+    <mata name="viewport" content="width=device-widrailsth, initial-scale=1, shrink-to-fit=no">
+
+    <title>HtmlTagCounting</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,7 +13,9 @@
   </head>
 
   <body>
-    <%= render 'shared/flash' %>
-    <%= yield %>
+    <div class="containet">
+      <%= render 'shared/flash' %>
+      <%= yield %>
+    </div>
   </body>
 </html>

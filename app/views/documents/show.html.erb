@@ -15,7 +15,9 @@
       </tr>
     </thead>
     
-    <%= render @document.tags %>      
+    <%= render @tags %>      
   </table>
+
+<%= paginate @tags %>
 
 <%= link_to 'Back', documents_path %>

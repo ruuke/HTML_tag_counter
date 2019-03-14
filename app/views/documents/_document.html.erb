@@ -1,0 +1,13 @@
+<tr>
+  <td class="align-middle"><%= truncate(document.url, length: 100) %></td>      
+  <td class="align-middle">
+    <div class="btn-group btn-group-sm">    
+      <%= show_button(document_path(document)) do %>
+          <%= octicon "telescope" %>
+          <% end %>
+      <%= delete_button(document_path(document)) do %>                  
+          <% octicon 'trashcan' %>
+          <% end %>
+    </div>
+  <td>
+</tr>

@@ -1,25 +1,24 @@
-<h1>Documents</h1>
+<div class="row justify-content-center mt-3 ">
+  <div class="col col-md-10">
 
-<div class="table-resposive">
-  <table class="table mt-3">
-    <tr>
-      <th width="300">URL</th>
-      <th width="35" align="center">Actions</th>
-      <th></th>
-    </tr>
+    <h2>Documents</h2>
 
-    <% @documents.each do |document| %>
-      <tr>
-        <td><%= truncate(document.url, length: 35) %></td>      
-        <td><%= link_to 'Show', document_path(document) %></td>      
-        <td><%= link_to 'Destroy', document_path(document),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </table>
-<div>
+      <table class="table">
+        <tr>
+          <th>URL</th>
+          <th>Actions</th>
+          <th></th>
+        </tr>
+        
+        <%= render partial: 'documents/document', collection: @documents %>
+      </table>
 
-<%= paginate @documents %>
+      <%= paginate @documents %>    
 
-<%= link_to 'New document', new_document_path %>
+      <div class="text-center">
+        <%= link_to 'New document', new_document_path,class: 'btn btn-outline-success btn-sm' %>      
+      </div>
+
+  </div>
+</div>
+

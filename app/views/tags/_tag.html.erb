@@ -1,11 +1,18 @@
 <tr>
   <td><%= tag.title %></td>
   <td><%= tag.count %></td>
-  <td><%= link_to 'Show', tag_path(tag) %></td>
-  <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
-  <td><%= link_to 'Destroy Tag', tag_path(tag),
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
+  <td>
+    <div class="btn-group btn-group-sm">
+      <%= show_button(tag_path(tag)) do %>
+          <%= octicon "telescope" %>
+          <% end %>
+      <%= edit_button(tag_path(tag)) do %>
+          <%= octicon "settings" %>
+          <% end %>
+      <%= delete_button(tag_path(tag)) do %>                  
+          <% octicon 'trashcan' %>
+          <% end %>  
+    </div>
   </td>
-</tr>    
+</tr>
   

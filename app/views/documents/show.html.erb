@@ -1,23 +1,26 @@
-<p>
-  <strong>Document</strong>
-  <%= link_to @document.url, @document.url, target: "_blank" %>
-</p>
+<div class="row justify-content-center mt-3 ">
+  <div class="col col-md-8">
 
-<h1>Tags list</h1>
+    <h2>Tags list</h2>
 
+    <p>
+      <strong>Document</strong>
+      <%= link_to truncate(@document.url, length: 35), target: "_blank" %>
+    </p>
 
-  <table class="table">
-    <thead>
+    <table class="table">
       <tr>
-        <th scope="col">Tag</th>
-        <th scope="col">Count</th>
-        <th scope="col" width=25>Actions</th>
-      </tr>
-    </thead>
-    
-    <%= render @tags %>      
-  </table>
+        <th>Tag</th>
+        <th>Count</th>
+        <th>Actions</th>
+      </tr>        
+      
+      <%= render partial: 'tags/tag', collection: @document_tags %>      
+    </table>
 
-<%= paginate @tags %>
+    <%= paginate @document_tags %>
 
-<%= link_to 'Back', documents_path %>
+    <%= link_to 'Back', documents_path, class: 'btn btn-outline-primary' %>
+
+  </div>
+</div>

@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
   rescue_from RuntimeError, with: :rescue_standard_errors
 
   def index
-    @documents = Document.order(:url).page(params[:page])
+    @documents = Document.page(params[:page])
   end
 
   def new
@@ -26,7 +26,7 @@ class DocumentsController < ApplicationController
   end
 
   def show
-    @tags = @document.tags.page(params[:page])
+    @document_tags = @document.tags.page(params[:page])
   end
 
   def destroy

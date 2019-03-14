@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:charset => "utf-8"}/
+    %mata{:content => "width=device-widrailsth, initial-scale=1, shrink-to-fit=no", :name => "viewport"}
+      %title HtmlTagCounting
+      = csrf_meta_tags
+      = csp_meta_tag
+      = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+      = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    = render 'shared/header'
+    .containet
+      = render 'shared/flash'
+      = yield
+      = render 'shared/footer'

@@ -10,7 +10,7 @@ class TagsController < ApplicationController
 
   def update
     if @tag.update(tag_params)
-      redirect_to tag_path
+      redirect_to tag_path, notice: 'Tag successfully updated.'
     else
       render :edit
     end
@@ -18,7 +18,7 @@ class TagsController < ApplicationController
 
   def destroy
     @tag.destroy
-    redirect_to @tag.document
+    redirect_to @tag.document, notice: 'Tag deleted.'
   end
 
   private

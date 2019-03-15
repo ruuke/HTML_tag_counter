@@ -1,0 +1,14 @@
+.row.justify-content-center.mt-3
+  .col.col-md-8
+    %h2 Tags list
+    %p
+      %strong Document
+      = link_to truncate(@document.url, length: 35), target: "_blank"
+    %table.table
+      %tr
+        %th Tag
+        %th Count
+        %th Actions
+      = render partial: 'tags/tag', collection: @document_tags
+    = paginate @document_tags
+    = link_to 'Back', documents_path, class: 'btn btn-outline-primary'

@@ -1,0 +1,12 @@
+.row.justify-content-center.mt-3
+  .col.col-md-10
+    %h2 Documents
+    %table.table
+      %tr
+        %th URL
+        %th Actions
+        %th
+      = render partial: 'documents/document', collection: @documents
+    = paginate @documents
+    .text-center
+      = link_to 'New document', new_document_path,class: 'btn btn-outline-success btn-sm'

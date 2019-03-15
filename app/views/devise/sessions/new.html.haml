@@ -1,0 +1,22 @@
+.row.justify-content-center.mt-3
+  .col.col-md-4
+    .card.border-secondary
+      .card-body
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .form-group
+            %p
+              = f.label :email
+              %br/
+              = f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Enter email'
+            %p
+              = f.label :password
+              %br/
+              = f.password_field :password, autocomplete: "off", class: 'form-control'
+            - if devise_mapping.rememberable?
+              .form-check
+                = f.label :remember_me, class: 'form_check_label' do
+                  = f.check_box :remember_me, class: 'form_check_input'
+                  Remember me
+            = f.submit "Log in", class: 'btn btn-outline-success btn-sm'
+    .mt-3
+      = render "devise/shared/links"

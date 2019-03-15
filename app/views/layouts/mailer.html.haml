@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    :css
+      .mailbox {
+        border: 3px solid #3c85e0;
+        padding: 10px;
+        border-radius: 5px;
+        width: 70%
+        margin: 0 auto;
+        margin-top: 25 px
+      }
+  %body
+    .mailbox
+      = yield

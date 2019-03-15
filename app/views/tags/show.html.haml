@@ -1,0 +1,10 @@
+.row.justify-content-center.mt-3
+  .col.col-md-8
+    %h3
+      = @tag.title
+      tag
+    .text-center
+      %p
+        %strong Count:
+        = @tag.count
+      = link_to 'Back', document_path(@tag.document), class: 'btn btn-outline-primary'

@@ -1,0 +1,9 @@
+%tr
+  %td.align-middle= truncate(document.url, length: 100)
+  %td.align-middle
+    .btn-group.btn-group-sm
+      = show_button(document_path(document)) do
+        = octicon "telescope"
+      = delete_button(document_path(document)) do
+        - octicon 'trashcan'
+  %td

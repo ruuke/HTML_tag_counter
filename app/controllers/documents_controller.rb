@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
   rescue_from RuntimeError, with: :rescue_standard_errors
 
   def index
-    @documents = Document.page(params[:page])
+    @documents = current_user.documents.page(params[:page])
   end
 
   def new
@@ -19,7 +19,11 @@ class DocumentsController < ApplicationController
 
     if @document.save
       DocumentsMailer.created_document(@document).deliver_now
+<<<<<<< Updated upstream
       redirect_to document_path(@document)
+=======
+      redirect_to document_path(@document), notice: 'Document successfully created.'
+>>>>>>> Stashed changes
     else
       render :new
     end

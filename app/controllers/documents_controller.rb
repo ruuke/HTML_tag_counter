@@ -15,19 +15,11 @@ class DocumentsController < ApplicationController
 
   def create 
     @document = current_user.documents.new(document_params)
-    TagCountingService.new(@document).call    
+    TagCountingService.new(@document).call
 
     if @document.save
       DocumentsMailer.created_document(@document).deliver_now
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-      redirect_to document_path(@document)
-=======
       redirect_to document_path(@document), notice: 'Document successfully created.'
->>>>>>> Stashed changes
-=======
-      redirect_to document_path(@document), notice: 'Document successfully create.'
->>>>>>> 2b9ccf786865563dd436cf9bc1fcb2817b3f9d71
     else
       render :new
     end

@@ -1,0 +1,15 @@
+.row.justify-content-center.mt-3
+  .col.col-md-4
+    .card.border-secondary
+      .card-body
+        = form_with model: @tag, local: true do |form|
+          = render 'shared/errors', resource: @tag
+          %p
+            = @tag.title
+            tag
+          %p
+            = form.label :count
+            %br/
+            = form.text_area :count, id: :tag_count, class: 'form-control'
+          %p= form.submit class: 'btn btn-outline-success btn-sm'
+    = link_to 'Back', document_path(@tag.document), class: 'btn btn-outline-primary'

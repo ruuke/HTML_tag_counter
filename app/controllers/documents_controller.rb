@@ -19,11 +19,15 @@ class DocumentsController < ApplicationController
 
     if @document.save
       DocumentsMailer.created_document(@document).deliver_now
+<<<<<<< HEAD
 <<<<<<< Updated upstream
       redirect_to document_path(@document)
 =======
       redirect_to document_path(@document), notice: 'Document successfully created.'
 >>>>>>> Stashed changes
+=======
+      redirect_to document_path(@document), notice: 'Document successfully create.'
+>>>>>>> 2b9ccf786865563dd436cf9bc1fcb2817b3f9d71
     else
       render :new
     end
@@ -35,7 +39,7 @@ class DocumentsController < ApplicationController
 
   def destroy
     @document.destroy
-    redirect_to documents_path
+    redirect_to documents_path, notice: 'Document deleted.'
   end
 
   private
@@ -49,11 +53,11 @@ class DocumentsController < ApplicationController
   end
 
   def rescue_with_incorrect_url
-    redirect_to documents_path, notice: '#Incorrect URL.'
+    redirect_to documents_path, notice: 'Incorrect URL.'
   end
 
   def rescue_standard_errors
-    redirect_to documents_path, notice: 'Incorrect URL.'
+    redirect_to documents_path, notice: 'Protected URL.'
   end
 
 end

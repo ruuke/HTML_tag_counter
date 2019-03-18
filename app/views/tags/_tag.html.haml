@@ -1,0 +1,11 @@
+%tr
+  %td= tag.title
+  %td= tag.count
+  %td
+    .btn-group.btn-group-sm
+      = show_button(tag_path(tag)) do
+        = octicon "telescope"
+      = edit_button(edit_tag_path(tag)) do
+        = octicon "settings"
+      = delete_button(tag_path(tag)) do
+        - octicon 'trashcan'

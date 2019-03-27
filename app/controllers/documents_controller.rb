@@ -4,6 +4,7 @@ class DocumentsController < ApplicationController
 
   rescue_from Errno::ENOENT, with: :rescue_with_incorrect_url
   rescue_from RuntimeError, with: :rescue_standard_errors
+  rescue_from Exception, with: :rescue_500_error
 
   def index
     @documents = current_user.documents.page(params[:page])
@@ -13,7 +14,7 @@ class DocumentsController < ApplicationController
     @document = Document.new
   end
 
-  def create 
+  def create
     @document = current_user.documents.new(document_params)
     TagCountingService.new(@document).call
 
@@ -50,6 +51,10 @@ class DocumentsController < ApplicationController
 
   def rescue_standard_errors
     redirect_to documents_path, notice: 'Protected URL.'
+  end
+
+  def rescue_500_error
+    redirect_to documents_path, notice: '500 - Internal Server error.'
   end
 
 end

@@ -1,50 +1,49 @@
 require 'open-uri'
 
-class Nokogiri::XML::Node
-  def descendant_elements
-    element_children.map { |kid| [kid, kid.descendant_elements] }.flatten
-  end
-end
-
 class TagCountingService
 
   attr_writer :tag_index, :tags_flatten
 
   def initialize(document)
     @document = document
-    @tags_two_dimentional_array = []
-    @tags_flatten
-    @tag_hash = Hash.new(0)
-    @tag_index = []
+    @tags_2d_array = []
   end
 
   def call
     open_url
     parse_page
-    max_nested_tags_count
+    max_nested_tag
     create_tags
   end
+
+  private
 
   def open_url
     @doc = Nokogiri::HTML(open(@document.url))
   end
 
   def parse_page
-    @doc.search(":not(html):not(body)").each do |n|
-      @tags_two_dimentional_array << [ n.name, n.descendant_elements.size ]
+    @doc.search(":not(html):not(body)").each do |tag|
+      @tags_2d_array << [ tag.name, get_child_count(tag) ]
     end
   end
 
-  def max_nested_tags_count
-    @tags_flatten = @tags_two_dimentional_array.flatten
-    @tags_flatten.each_with_index { |value, index| @tag_hash[index] = value if value.is_a?(Integer) } #получаю хэш - ключ-индекс, значение-кол-во потомков
-    @tag_index = @tag_hash.select{ |k, v| v == @tag_hash.values.max }.keys #нахожу индексы с максимальным кол-вом потомков
+  def get_child_count(elem)
+    children = elem.element_children
+    return 0 unless children && children.count > 0
+    child_count = children.count
+    children.each do |child|
+      child_count += get_child_count(child)
+    end
+    child_count
+  end
+
+  def max_nested_tag
+    @tag = @tags_2d_array.max_by(&:last) #@tags_2d_array.each_with_object( {} ) { |(key, value), out| ( out[value] ||= [] ) << key }
   end
 
   def create_tags
-    tag = @tags_flatten
-    count = @tags_flatten
-    @tag_index.each { |index| @document.tags.build(title: tag[index-1], count: count[index])}
+    @document.tags.build(title: @tag[0], count: @tag[1]) #title: @tags[@tags.keys.max], count: @tags.keys.max
   end
 
 end

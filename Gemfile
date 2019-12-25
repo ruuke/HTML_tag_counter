@@ -36,7 +36,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'nokogiri'
 
 gem 'jquery-rails'
-gem 'bootstrap', '~> 4.2.1'
+gem 'bootstrap', '~> 4.3.1'
 gem 'kaminari'
 gem 'devise', '~> 4.0'
 gem 'octicons_helper'

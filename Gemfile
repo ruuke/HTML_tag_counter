@@ -38,7 +38,7 @@ gem 'nokogiri'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.2.1'
 gem 'kaminari'
-gem 'devise', '~> 4.0'
+gem 'devise', '~> 4.7'
 gem 'octicons_helper'
 gem "haml-rails", "~> 1.0"
 
